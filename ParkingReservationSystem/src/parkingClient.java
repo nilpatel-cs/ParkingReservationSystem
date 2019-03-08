@@ -27,11 +27,12 @@ import java.util.Scanner;
             System.out.println("Ex: Nil Reserve 04/06/2015 13 44");
             System.out.println("Valid Commands are Reserve, Extend, Cancel, View.");
             System.out.println("Time slots are an hour long and can be reserved from 0-23 there are 50 spots.");
+            //takes in user input based on directions
             String input = key.nextLine();
             out.println(input);
-            out.flush();
+            out.flush(); //flushes user entry to server for processing
      
-            while (in.hasNextLine())
+            while (in.hasNextLine()) // prints out response from server
             {
                 String line = in.nextLine();
                 System.out.println(line);
