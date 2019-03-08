@@ -73,34 +73,22 @@ public String cancel(String name1, int time1, int spot1, String Date1)//will can
  
 public String extend(String name1,int time1, int spot1, String Date1){   //will extend previous reservation if possible by one hour
 
-        int timeDes = time1;
+        
         spot = spot1-1;
          
-        if (parking[timeDes][spot].getState().equalsIgnoreCase("Reserved"))
+        if (parking[time1][spot].getState().equalsIgnoreCase("Reserved")&&parking[time1][spot].getName().equalsIgnoreCase(name1))//checks to see if the spot is reserved by the user
         {
-        String nameTemp = parking[timeDes][spot].getName();
-         
-        for(int i = 0; i<50;i++)
-        {
-            if(parking[timeDes+1][i].getState().equalsIgnoreCase("Available"))
+            if(parking[time1+1][spot].getState().equalsIgnoreCase("Available"))//checks to see if next hour is available
             {
-                if(parking[timeDes+1][i].reserve(nameTemp))
-                    {
-                        name=name1;
-                        parking[timeDes+1][spot].reserve(name);
-                        message = "Your reservation was extended.";
-                        i=51;
-                    }
+                        parking[time1+1][spot].reserve(name1);
+                        message = "Your reservation was extended.";       
                 }
             else
                 {
                     message = "It is not possible to extend your reservation.";
                  
                 }
-            }
-             
-        }
-         
+            }   
     else
         {
             message = "Unable to extend a non-existent reservation.";
